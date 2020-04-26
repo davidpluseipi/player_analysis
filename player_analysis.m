@@ -82,7 +82,7 @@ data.t = datetime(data.t, 'InputFormat', 'HH:mm:ss.SS', 'Format', 'HH:mm:ss.SS')
 % plot(t(1:s),data.AcclY(1:s))
 % data.Time(data.AcclY > 8)
 % t(data.AcclY > 8)
-t_a0 = t(data.ay == 0);
+t_a0 = data.t(data.ay == 0);
 
 %% Calculate vertical velocity
 
@@ -115,13 +115,19 @@ disp('Velocities where AcclY is 0')
 for i = 1:length(t_a0)
     disp(v(time == t_a0(i)))
 end
+%%
+% Display k largest elements of velocity
+disp('k largest elements of velocities')
+k = 10;
+vk = maxk(v,k);
+
 
 %% Visualize the data
 
 figure
 
 subplot(2,1,1)
-plot(t,data.AcclY)
+plot(data.t,data.ay)
 ylabel('AcclY')
 grid on
 
