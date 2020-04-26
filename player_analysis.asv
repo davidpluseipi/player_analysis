@@ -53,18 +53,9 @@ data = importfile(filename, [row_start, row_end]);
 % data.a_impulse = instantaneous acceleration impulse, double
 % data.hr_interval = heart rate interval, double
 % data.lat = latitude, double
-% data.lon = longitude, double
-% data.ax = acceleration in the +x direction (see axes.png)
-% data.ay = acceleration in the +y direction (see axes.png)
-% data.az = acceleration in the +z direction (see axes.png)
-% data.gx = gyro x
-% data.gy = gyro y
-% data.gz = gyro z
-% data.h_acc = 
-% data.h_dop = 
-% data.signal_quality = gps signal quality?
-% data.num_sat = number of satellites
-%
+% data.lon = l
+
+
 % References for this section:
 % web(fullfile(docroot, 'matlab/import_export/select-spreadsheet-data-interactively.html'))
 
@@ -94,8 +85,8 @@ for i = 1:1998
     d.Message = 'Integrating...';
     
     % Compute the numerical integration
-    v(i) = trapz(data.ay(1+i*10:10*i+10));
-    times = datetime(data.t(1+i*10:10*i+10), 'InputFormat', 'HH:mm:ss.SS', 'Format', 'HH:mm:ss.SS');
+    v(i) = trapz(data.AcclY(1+i*10:10*i+10));
+    times = datetime(data.Time(1+i*10:10*i+10), 'InputFormat', 'HH:mm:ss.SS', 'Format', 'HH:mm:ss.SS');
     
     % Make sure the times that get assigned to velocity contain the
     % matching times where acceleratin is zero

@@ -30,7 +30,7 @@ opts.DataLines = dataLines;
 opts.Delimiter = ",";
 
 % Specify column names and types
-opts.VariableNames = ["PlayerId", "PlayerDisplayName", "SessionId", "Time", "ElapsedTime", "Speedms", "InstantaneousAccelerationImpulse", "HeartRateInterval", "Latitude", "Longitude", "AcclX", "AcclY", "AcclZ", "GyroX", "GyroY", "GyroZ", "Hacc", "Hdop", "QualityofSignal", "NoofSatellites"];
+opts.VariableNames = ["id", "name", "session", "t", "t_elapsed", "speed", "a_impulse", "hr_interval", "lat", "lon", "ax", "ay", "az", "gx", "gy", "gz", "h_acc", "h_dop", "signal_quality", "num_sat"];
 opts.VariableTypes = ["double", "categorical", "double", "string", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double", "double"];
 
 % Specify file level properties
@@ -38,8 +38,8 @@ opts.ExtraColumnsRule = "ignore";
 opts.EmptyLineRule = "read";
 
 % Specify variable properties
-opts = setvaropts(opts, "Time", "WhitespaceRule", "preserve");
-opts = setvaropts(opts, ["PlayerDisplayName", "Time"], "EmptyFieldRule", "auto");
+opts = setvaropts(opts, "t", "WhitespaceRule", "preserve");
+opts = setvaropts(opts, ["name", "t"], "EmptyFieldRule", "auto");
 
 % Import the data
 data = readtable(filename, opts);
